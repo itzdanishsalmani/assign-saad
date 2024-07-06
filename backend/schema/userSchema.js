@@ -23,9 +23,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+
   inTime: {
-    type: Date,
-    default: Date.now
+    type: String,
   },
   outTime: {
     type: Date

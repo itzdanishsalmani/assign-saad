@@ -1,7 +1,18 @@
+import axios from "../axios";
+
 export function HomePage(){
-  return (
+  function attendance(){
+    const username = "danish"
+    const date = new Date();
+    axios.post("/attendance",{
+      username,
+      date
+    })
+   console.log(username,date)
+  }
+   return (
     <div>
-      hello
+<button onClick={attendance}>signin </button >
     </div>
   ) 
 }
