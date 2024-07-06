@@ -1,7 +1,10 @@
 import express from "express";
 import { connectDB } from "./db.js";
+import bodyParser from 'body-parser';
 import User from "./schema/userSchema.js";
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const MONGO_URL =
   "mongodb+srv://saadansari:UVJXHDJW8NrSrfW8@cluster0.rrwsgcg.mongodb.net/assignment";
@@ -28,12 +31,19 @@ connectDB(MONGO_URL)
    return res.status(200).json({message: "success"})
   });
 
-  app.post("/signin", async (req, res) => {
-    const { username, password } = req.body;
-    console.log(username,password);
-    await User.create({
-      username,
-      password,
+    app.post("/signin", async (req, res) => {
+      const { username, password } = req.body;
+      console.log(username,password);
+
+      const user = await User.findOne({
+        username: req.body.username,
+        password: req.body.password
+      });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+      
+    return res.status(200).json({message: "success"})
     });
-   return res.status(200).json({message: "success"})
-  });
