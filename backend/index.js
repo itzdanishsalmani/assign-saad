@@ -1,7 +1,6 @@
 import express from "express";
-// import { connectDB } from './db';
 import { connectDB } from "./db.js";
-import UserScehema from "./schema/user.schema.js";
+import User from "./schema/userSchema.js";
 const app = express();
 
 const MONGO_URL =
@@ -20,13 +19,21 @@ connectDB(MONGO_URL)
   app.post("/signup", async (req, res) => {
     const { username, email, password, phoneNo } = req.body;
     console.log(username);
-    await UserSchema.create({
+    await User.create({
       username,
       password,
       email,
-      phoneNo,
+      phoneNo
     });
    return res.status(200).json({message: "success"})
   });
 
-// res.status(200).json({ message: "success" });
+  app.post("/signin", async (req, res) => {
+    const { username, password } = req.body;
+    console.log(username,password);
+    await User.create({
+      username,
+      password,
+    });
+   return res.status(200).json({message: "success"})
+  });

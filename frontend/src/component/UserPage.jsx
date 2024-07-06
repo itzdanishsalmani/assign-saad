@@ -1,9 +1,7 @@
-import React from 'react'
-
-const user = () => {
+export function UserPage(){
   return (
-    <div></div>
+    <div>
+      hello
+    </div>
   )
 }
-
-export default user

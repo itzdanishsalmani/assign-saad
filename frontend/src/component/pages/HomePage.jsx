@@ -1,12 +1,7 @@
-import React from 'react'
-
-const HomePage = () => {
+export function HomePage(){
   return (
-    <>
-        
-        <button>SIGN IN</button>
-    </>
-  )
+    <div>
+      hello
+    </div>
+  ) 
 }
-
-export default HomePage
